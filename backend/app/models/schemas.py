@@ -14,6 +14,8 @@ class ActivityItem(BaseModel):
     duration_minutes: int = Field(90, description="Duration in minutes")
     transit_info: Optional[str] = Field(None, description="Suggested mode: Auto, Metro, Cab, Bus, Walking")
     is_cost_estimated: bool = Field(True, description="Always true unless live ticketing is integrated")
+    lat: Optional[float] = Field(None, description="Geographic latitude")
+    lng: Optional[float] = Field(None, description="Geographic longitude")
 
 class StayRecommendation(BaseModel):
     name: str = Field(..., description="Hotel, Hostel, or Homestay name/type")
@@ -92,6 +94,9 @@ class TripResponse(BaseModel):
     generated_by: str = "Generative AI Knowledge Engine"
     notes: Optional[str] = None
     disclaimer: str = "All prices, timings, and transit estimates are approximate and tailored for Indian travel contexts (INR). Verify live operational timings and rates locally."
+    coordinates: Optional[Dict[str, float]] = None
+    weather_summary: Optional[str] = None
+    packing_tips: Optional[List[str]] = None
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
     updated_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
@@ -106,6 +111,10 @@ class DestinationInfo(BaseModel):
     image_url: str
     average_daily_budget_inr: float
     popular_attractions: List[str]
+    lat: Optional[float] = 22.7196
+    lng: Optional[float] = 75.8577
+    weather_summary: Optional[str] = None
+    packing_tips: Optional[List[str]] = None
 
 class HealthResponse(BaseModel):
     status: str

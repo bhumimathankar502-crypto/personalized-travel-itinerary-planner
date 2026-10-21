@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, Calendar, Users, MapPin, BookmarkCheck, RotateCcw, 
-  Printer, Share2, Check, ArrowLeft, ShieldAlert 
+  Calendar, Users, MapPin, BookmarkCheck, RotateCcw, 
+  Printer, Share2, Check, ArrowLeft, ShieldAlert, CloudSun, 
+  Luggage, IndianRupee, ReceiptText, Navigation
 } from 'lucide-react';
 import { Trip, ItineraryDay } from '../types';
 import { DayCard } from './DayCard';
 import { BudgetOverview } from './BudgetOverview';
+import { MapRouteViewer } from './MapRouteViewer';
+import { ExpenseTrackerModal } from './ExpenseTrackerModal';
 import { formatDateIndian } from '../utils/dates';
 import { formatINR } from '../utils/currency';
 
@@ -28,12 +31,13 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isExpenseTrackerOpen, setIsExpenseTrackerOpen] = useState(false);
+  const [showMap, setShowMap] = useState(true);
 
   const handleDayUpdate = (dayIndex: number, updatedDay: ItineraryDay) => {
     const updatedDays = [...trip.days];
     updatedDays[dayIndex] = updatedDay;
 
-    // Recalculate totals
     let totalStay = 0;
     let totalFood = 0;
     let totalActs = 0;
@@ -102,35 +106,58 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({
 
         <div className="flex flex-wrap items-center gap-2.5">
           <button
+            onClick={() => setIsExpenseTrackerOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-800 text-xs sm:text-sm font-bold shadow-sm transition-all"
+          >
+            <ReceiptText className="w-4 h-4 text-amber-700" />
+            <span>Expense Ledger</span>
+            {(trip.actual_expenses?.length || 0) > 0 && (
+              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-700 text-white font-bold">
+                {trip.actual_expenses?.length}
+              </span>
+            )}
+          </button>
+
+          <button
             onClick={handleSaveClick}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm font-semibold shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs sm:text-sm font-semibold shadow-sm transition-all"
           >
             {isSaved ? <Check className="w-4 h-4 text-emerald-600" /> : <BookmarkCheck className="w-4 h-4 text-emerald-600" />}
-            <span>{isSaved ? 'Saved to Library!' : 'Save Trip'}</span>
+            <span>{isSaved ? 'Saved!' : 'Save Trip'}</span>
           </button>
 
           <button
             onClick={onRegenerate}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm font-semibold shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs sm:text-sm font-semibold shadow-sm transition-all"
           >
             <RotateCcw className="w-4 h-4 text-emerald-600" />
             <span>Regenerate</span>
           </button>
 
           <button
+            onClick={() => setShowMap(!showMap)}
+            className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs sm:text-sm font-semibold shadow-sm transition-all ${
+              showMap ? 'bg-emerald-50 border-emerald-300 text-emerald-800' : 'bg-white border-slate-200 text-slate-700'
+            }`}
+          >
+            <Navigation className="w-4 h-4 text-emerald-600" />
+            <span>{showMap ? 'Hide Route Map' : 'Show Route Map'}</span>
+          </button>
+
+          <button
             onClick={onExport}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-sm font-semibold shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs sm:text-sm font-semibold shadow-sm transition-all"
           >
             <Printer className="w-4 h-4 text-slate-600" />
-            <span>Export / Print</span>
+            <span>Print / PDF</span>
           </button>
 
           <button
             onClick={handleShare}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-sm shadow-emerald-500/20 transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold shadow-sm shadow-emerald-500/20 transition-all"
           >
             {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-            <span>{copied ? 'Copied Link & Summary!' : 'Share'}</span>
+            <span>{copied ? 'Copied!' : 'Share'}</span>
           </button>
         </div>
       </div>
@@ -174,6 +201,30 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({
           </div>
         </div>
 
+        {/* Weather & Packing Insights */}
+        {(trip.weather_summary || trip.packing_tips) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200/80 text-xs">
+            {trip.weather_summary && (
+              <div className="flex items-start gap-2.5">
+                <CloudSun className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-bold text-slate-800 block">Seasonal Weather Outlook:</span>
+                  <span className="text-slate-600">{trip.weather_summary}</span>
+                </div>
+              </div>
+            )}
+            {trip.packing_tips && trip.packing_tips.length > 0 && (
+              <div className="flex items-start gap-2.5">
+                <Luggage className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-bold text-slate-800 block">Recommended Packing:</span>
+                  <span className="text-slate-600">{trip.packing_tips.join(' • ')}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Notes if any */}
         {trip.notes && (
           <div className="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 text-xs sm:text-sm text-amber-900">
@@ -188,6 +239,11 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({
           totalBudget={trip.total_budget_inr}
         />
       </div>
+
+      {/* Interactive Map Route Section */}
+      {showMap && (
+        <MapRouteViewer trip={trip} />
+      )}
 
       {/* Day by Day Schedule Section */}
       <div className="space-y-6">
@@ -228,6 +284,14 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({
           Recommended local transit: Use metered/prepaid autos, metro services where available (Delhi, Bengaluru, Mumbai, Pune, Kochi, etc.), or authorized taxi apps. For religious shrines & temple darshans (e.g., Mahakaleshwar, Kashi Vishwanath), booking online VIP/darshan passes in advance is advised.
         </p>
       </div>
+
+      {/* Expense Tracker Modal */}
+      <ExpenseTrackerModal
+        isOpen={isExpenseTrackerOpen}
+        onClose={() => setIsExpenseTrackerOpen(false)}
+        trip={trip}
+        onUpdateTrip={onUpdateTrip}
+      />
     </div>
   );
 };

@@ -6,12 +6,14 @@ import { ItineraryView } from './components/ItineraryView';
 import { DestinationSpotlight } from './components/DestinationSpotlight';
 import { SavedTripsModal } from './components/SavedTripsModal';
 import { ExportShareModal } from './components/ExportShareModal';
+import { AuthModal } from './components/AuthModal';
 import { Trip, TripCreateInput, HealthStatus } from './types';
 import { 
   generateTrip, getSavedTrips, saveTripLocally, 
   deleteTrip, regenerateTrip, checkBackendHealth 
 } from './services/api';
-import { Compass, Sparkles, Heart } from 'lucide-react';
+import { getCurrentUser, signOutUser } from './services/supabase';
+import { Compass, Heart } from 'lucide-react';
 
 export function App() {
   const [activeView, setActiveView] = useState<'wizard' | 'itinerary'>('wizard');
@@ -19,6 +21,8 @@ export function App() {
   const [savedTrips, setSavedTrips] = useState<Trip[]>([]);
   const [isSavedModalOpen, setIsSavedModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [destinationParam, setDestinationParam] = useState('');
   const [health, setHealth] = useState<HealthStatus | null>(null);
@@ -26,12 +30,9 @@ export function App() {
   // Initialize data on mount
   useEffect(() => {
     checkBackendHealth().then(setHealth);
+    getCurrentUser().then(setCurrentUser);
     getSavedTrips().then(trips => {
       setSavedTrips(trips);
-      // If user had a previously viewed trip, load it
-      if (trips.length > 0 && !currentTrip) {
-        // Keep in wizard view by default, but ready in saved list
-      }
     });
   }, []);
 
@@ -41,7 +42,6 @@ export function App() {
       const trip = await generateTrip(input);
       setCurrentTrip(trip);
       setActiveView('itinerary');
-      // Refresh saved trips
       const updated = await getSavedTrips();
       setSavedTrips(updated);
     } catch (err) {
@@ -104,6 +104,11 @@ export function App() {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSignOut = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 antialiased">
       {/* Navigation */}
@@ -116,6 +121,9 @@ export function App() {
         onExploreClick={handleExploreClick}
         savedCount={savedTrips.length}
         health={health}
+        currentUser={currentUser}
+        onOpenAuth={() => setIsAuthModalOpen(true)}
+        onSignOut={handleSignOut}
       />
 
       {/* Main Viewport */}
@@ -177,6 +185,12 @@ export function App() {
         />
       )}
 
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onSuccess={(user) => setCurrentUser(user)}
+      />
+
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 mt-16 py-10 no-print">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
@@ -189,7 +203,7 @@ export function App() {
           <div className="flex items-center gap-4">
             <span>Market: India (INR ₹)</span>
             <span>•</span>
-            <span>React + FastAPI + Supabase + AI</span>
+            <span>React + FastAPI + Supabase + Leaflet</span>
             <span>•</span>
             <span className="flex items-center gap-1">
               Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Indian travelers

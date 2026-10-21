@@ -10,6 +10,8 @@ export interface Activity {
   duration_minutes: number;
   transit_info?: string;
   is_cost_estimated: boolean;
+  lat?: number;
+  lng?: number;
 }
 
 export interface StayRecommendation {
@@ -41,6 +43,15 @@ export interface CostBreakdown {
   total_estimated_cost_inr: number;
 }
 
+export interface ExpenseItem {
+  id: string;
+  title: string;
+  category: 'Stay' | 'Food' | 'Sightseeing' | 'Transport' | 'Shopping' | 'Misc';
+  amount_inr: number;
+  date: string;
+  notes?: string;
+}
+
 export interface Trip {
   id: string;
   title: string;
@@ -60,6 +71,10 @@ export interface Trip {
   generated_by: string;
   notes?: string;
   disclaimer: string;
+  coordinates?: { lat: number; lng: number };
+  weather_summary?: string;
+  packing_tips?: string[];
+  actual_expenses?: ExpenseItem[];
   created_at?: string;
   updated_at?: string;
 }

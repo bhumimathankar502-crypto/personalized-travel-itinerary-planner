@@ -64,9 +64,17 @@ def generate_algorithmic_itinerary(req: TripCreateRequest, duration_days: int, b
         transit_advice = dest_info["transit_tip"]
         stay_opt = dest_info["stay_options"].get(budget_tier, dest_info["stay_options"]["Moderate"])
         stay_rate = float(stay_opt["cost"])
+        center_lat = float(dest_info.get("lat", 22.7196))
+        center_lng = float(dest_info.get("lng", 75.8577))
+        weather = dest_info.get("weather_summary", "Pleasant travel season, moderate day temperatures")
+        pack_tips = dest_info.get("packing_tips", ["Comfortable shoes for walking and temple visits", "UPI payment apps", "Cotton clothing"])
     else:
         dest_name = req.destination.strip().title()
         state_name = "India"
+        center_lat = 22.7196
+        center_lng = 75.8577
+        weather = "Pleasant travel conditions with moderate temperatures"
+        pack_tips = ["Comfortable walking shoes", "Light layers", "Mobile battery pack", "UPI apps"]
         attractions = [
             f"Historic Heritage Fort & Monuments of {dest_name}",
             f"Vibrant Local Bazaar & Artisan Market in {dest_name}",
@@ -117,7 +125,9 @@ def generate_algorithmic_itinerary(req: TripCreateRequest, duration_days: int, b
             estimated_cost_inr=morning_cost,
             duration_minutes=180,
             transit_info=f"Auto-rickshaw or taxi to landmark (approx ₹80 - ₹180)",
-            is_cost_estimated=True
+            is_cost_estimated=True,
+            lat=center_lat + 0.012 + (day_idx * 0.003),
+            lng=center_lng + 0.008 - (day_idx * 0.002)
         )
         
         act2 = ActivityItem(
@@ -131,7 +141,9 @@ def generate_algorithmic_itinerary(req: TripCreateRequest, duration_days: int, b
             estimated_cost_inr=lunch_cost + afternoon_cost,
             duration_minutes=180,
             transit_info="Walking distance or short 2 km e-rickshaw ride",
-            is_cost_estimated=True
+            is_cost_estimated=True,
+            lat=center_lat - 0.006 + (day_idx * 0.002),
+            lng=center_lng + 0.014 + (day_idx * 0.001)
         )
         
         act3 = ActivityItem(
@@ -145,7 +157,9 @@ def generate_algorithmic_itinerary(req: TripCreateRequest, duration_days: int, b
             estimated_cost_inr=evening_cost,
             duration_minutes=210,
             transit_info=transit_advice,
-            is_cost_estimated=True
+            is_cost_estimated=True,
+            lat=center_lat - 0.015 - (day_idx * 0.001),
+            lng=center_lng - 0.010 + (day_idx * 0.003)
         )
         
         day_activities = [act1, act2, act3]
@@ -208,7 +222,10 @@ def generate_algorithmic_itinerary(req: TripCreateRequest, duration_days: int, b
         days=days,
         generated_by="Indian Travel Knowledge Engine",
         notes=req.notes,
-        disclaimer="All prices, distances, and transit timings are realistic Indian estimates (in INR). Always verify real-time temple darshan timings, museum holidays, and rail/bus tickets locally."
+        disclaimer="All prices, distances, and transit timings are realistic Indian estimates (in INR). Always verify real-time temple darshan timings, museum holidays, and rail/bus tickets locally.",
+        coordinates={"lat": center_lat, "lng": center_lng},
+        weather_summary=weather,
+        packing_tips=pack_tips
     )
 
 async def generate_trip_itinerary(req: TripCreateRequest) -> TripResponse:
