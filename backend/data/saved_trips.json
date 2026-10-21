@@ -1,0 +1,203 @@
+[
+  {
+    "id": "b00cfdfe-66e7-4212-949a-87582470031d",
+    "title": "3-Day Cultural & Heritage Journey to Indore",
+    "destination": "Indore",
+    "state_or_country": "Madhya Pradesh, India",
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-03",
+    "duration_days": 3,
+    "travelers_count": 2,
+    "travel_style": "Cultural & Heritage",
+    "budget_tier": "Moderate",
+    "total_budget_inr": 20000.0,
+    "estimated_cost_inr": 20088.0,
+    "currency": "INR",
+    "cost_breakdown": {
+      "accommodation_inr": 10200.0,
+      "food_dining_inr": 4800.0,
+      "activities_sightseeing_inr": 2100.0,
+      "local_transport_inr": 1500.0,
+      "miscellaneous_inr": 1488.0,
+      "total_estimated_cost_inr": 20088.0
+    },
+    "days": [
+      {
+        "id": "3dcfdc53-6814-4f63-8c3a-118d40c28f48",
+        "day_number": 1,
+        "date": "2026-11-01",
+        "title": "Day 1: Highlights of Indore & Sarafa Night Food Market",
+        "summary": "A balanced day combining morning exploration at Sarafa Night Food Market, authentic lunch with Indori Poha-Jalebi, and vibrant evening market life.",
+        "estimated_daily_cost_inr": 6200.0,
+        "stay": {
+          "name": "Lemon Tree Hotel or WOW Hotel",
+          "type": "3-Star Boutique Hotel",
+          "location": "Central Indore",
+          "price_per_night_inr": 3400.0,
+          "description": "Comfortable Moderate accommodation well-situated for local transit in Indore.",
+          "booking_advice": "Recommended booking 1-3 weeks in advance for best seasonal rates in India."
+        },
+        "activities": [
+          {
+            "id": "6d703937-7c02-4160-a687-e8ac9c17894f",
+            "time_slot": "Morning",
+            "time_24h": "08:30 - 11:30",
+            "title": "Exploration of Sarafa Night Food Market",
+            "description": "Start the morning early to beat the crowds at Sarafa Night Food Market. Soak in the history and architecture with an atmospheric morning walk.",
+            "category": "Sightseeing",
+            "location_name": "Sarafa Night Food Market, Indore",
+            "estimated_cost_inr": 300.0,
+            "duration_minutes": 180,
+            "transit_info": "Auto-rickshaw or taxi to landmark (approx \u20b980 - \u20b9180)",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "a0be323f-f87c-4a87-810e-04ec2eca3641",
+            "time_slot": "Afternoon",
+            "time_24h": "12:30 - 15:30",
+            "title": "Authentic Culinary Feast & Rajwada Palace",
+            "description": "Enjoy lunch featuring Indori Poha-Jalebi. Continue with an unhurried visit to Rajwada Palace during the quieter afternoon hours.",
+            "category": "Food & Sightseeing",
+            "location_name": "Historic District, Indore",
+            "estimated_cost_inr": 1100.0,
+            "duration_minutes": 180,
+            "transit_info": "Walking distance or short 2 km e-rickshaw ride",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "733634b5-38d7-4f60-b394-1d8db2d94b81",
+            "time_slot": "Evening",
+            "time_24h": "17:30 - 21:00",
+            "title": "Sunset Stroll, Market Exploration & Dinner",
+            "description": "Experience the vibrant evening colors of Indore. Walk through bustling local lanes, taste Sev Tamatar, and shop for local handicrafts.",
+            "category": "Culture & Food",
+            "location_name": "Main Bazaar / Prominade, Indore",
+            "estimated_cost_inr": 900.0,
+            "duration_minutes": 210,
+            "transit_info": "Clean city buses (iBus BRTS), e-rickshaws, and auto rickshaws with metered/fixed fares.",
+            "is_cost_estimated": true
+          }
+        ]
+      },
+      {
+        "id": "98ee2bd3-d9af-4385-8026-ebbc2483f924",
+        "day_number": 2,
+        "date": "2026-11-02",
+        "title": "Day 2: Highlights of Indore & Chappan Dukan",
+        "summary": "A balanced day combining morning exploration at Chappan Dukan, authentic lunch with Sev Tamatar, and vibrant evening market life.",
+        "estimated_daily_cost_inr": 6200.0,
+        "stay": {
+          "name": "Lemon Tree Hotel or WOW Hotel",
+          "type": "3-Star Boutique Hotel",
+          "location": "Central Indore",
+          "price_per_night_inr": 3400.0,
+          "description": "Comfortable Moderate accommodation well-situated for local transit in Indore.",
+          "booking_advice": "Recommended booking 1-3 weeks in advance for best seasonal rates in India."
+        },
+        "activities": [
+          {
+            "id": "b4dfd3b6-ffa2-4504-b51d-3cb87a46efaf",
+            "time_slot": "Morning",
+            "time_24h": "08:30 - 11:30",
+            "title": "Exploration of Chappan Dukan",
+            "description": "Start the morning early to beat the crowds at Chappan Dukan. Soak in the history and architecture with an atmospheric morning walk.",
+            "category": "Sightseeing",
+            "location_name": "Chappan Dukan, Indore",
+            "estimated_cost_inr": 300.0,
+            "duration_minutes": 180,
+            "transit_info": "Auto-rickshaw or taxi to landmark (approx \u20b980 - \u20b9180)",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "e63c61ba-4779-41d1-b8f4-33d2de4f9b23",
+            "time_slot": "Afternoon",
+            "time_24h": "12:30 - 15:30",
+            "title": "Authentic Culinary Feast & Lal Bagh Palace",
+            "description": "Enjoy lunch featuring Sev Tamatar. Continue with an unhurried visit to Lal Bagh Palace during the quieter afternoon hours.",
+            "category": "Food & Sightseeing",
+            "location_name": "Historic District, Indore",
+            "estimated_cost_inr": 1100.0,
+            "duration_minutes": 180,
+            "transit_info": "Walking distance or short 2 km e-rickshaw ride",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "e37de6be-9442-4b43-944e-ccc3e42b05ce",
+            "time_slot": "Evening",
+            "time_24h": "17:30 - 21:00",
+            "title": "Sunset Stroll, Market Exploration & Dinner",
+            "description": "Experience the vibrant evening colors of Indore. Walk through bustling local lanes, taste Bhutte Ka Kees, and shop for local handicrafts.",
+            "category": "Culture & Food",
+            "location_name": "Main Bazaar / Prominade, Indore",
+            "estimated_cost_inr": 900.0,
+            "duration_minutes": 210,
+            "transit_info": "Clean city buses (iBus BRTS), e-rickshaws, and auto rickshaws with metered/fixed fares.",
+            "is_cost_estimated": true
+          }
+        ]
+      },
+      {
+        "id": "cb7101ab-4676-4b08-b790-b16a44b26c7c",
+        "day_number": 3,
+        "date": "2026-11-03",
+        "title": "Day 3: Highlights of Indore & Khajrana Ganesh Temple",
+        "summary": "A balanced day combining morning exploration at Khajrana Ganesh Temple, authentic lunch with Bhutte Ka Kees, and vibrant evening market life.",
+        "estimated_daily_cost_inr": 6200.0,
+        "stay": {
+          "name": "Lemon Tree Hotel or WOW Hotel",
+          "type": "3-Star Boutique Hotel",
+          "location": "Central Indore",
+          "price_per_night_inr": 3400.0,
+          "description": "Comfortable Moderate accommodation well-situated for local transit in Indore.",
+          "booking_advice": "Recommended booking 1-3 weeks in advance for best seasonal rates in India."
+        },
+        "activities": [
+          {
+            "id": "66e9fe34-8bb9-41ac-9b8e-745800b6b219",
+            "time_slot": "Morning",
+            "time_24h": "08:30 - 11:30",
+            "title": "Exploration of Khajrana Ganesh Temple",
+            "description": "Start the morning early to beat the crowds at Khajrana Ganesh Temple. Soak in the history and architecture with an atmospheric morning walk.",
+            "category": "Heritage",
+            "location_name": "Khajrana Ganesh Temple, Indore",
+            "estimated_cost_inr": 300.0,
+            "duration_minutes": 180,
+            "transit_info": "Auto-rickshaw or taxi to landmark (approx \u20b980 - \u20b9180)",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "ff11bf2f-9f77-4f82-b9f5-7ccbcc9329a7",
+            "time_slot": "Afternoon",
+            "time_24h": "12:30 - 15:30",
+            "title": "Authentic Culinary Feast & Sarafa Night Food Market",
+            "description": "Enjoy lunch featuring Bhutte Ka Kees. Continue with an unhurried visit to Sarafa Night Food Market during the quieter afternoon hours.",
+            "category": "Food & Sightseeing",
+            "location_name": "Historic District, Indore",
+            "estimated_cost_inr": 1100.0,
+            "duration_minutes": 180,
+            "transit_info": "Walking distance or short 2 km e-rickshaw ride",
+            "is_cost_estimated": true
+          },
+          {
+            "id": "d851ed16-44cf-4e4c-beba-3c7d148413f2",
+            "time_slot": "Evening",
+            "time_24h": "17:30 - 21:00",
+            "title": "Sunset Stroll, Market Exploration & Dinner",
+            "description": "Experience the vibrant evening colors of Indore. Walk through bustling local lanes, taste Garadu, and shop for local handicrafts.",
+            "category": "Culture & Food",
+            "location_name": "Main Bazaar / Prominade, Indore",
+            "estimated_cost_inr": 900.0,
+            "duration_minutes": 210,
+            "transit_info": "Clean city buses (iBus BRTS), e-rickshaws, and auto rickshaws with metered/fixed fares.",
+            "is_cost_estimated": true
+          }
+        ]
+      }
+    ],
+    "generated_by": "Indian Travel Knowledge Engine",
+    "notes": "Looking for authentic Indori street food",
+    "disclaimer": "All prices, distances, and transit timings are realistic Indian estimates (in INR). Always verify real-time temple darshan timings, museum holidays, and rail/bus tickets locally.",
+    "created_at": "2026-10-21T17:05:14.425532",
+    "updated_at": "2026-10-21T17:05:14.425532"
+  }
+]
