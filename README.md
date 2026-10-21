@@ -14,11 +14,15 @@ A full-stack, AI-powered travel planning SaaS application designed from the grou
 - **Intelligent Dual-Engine AI Architecture**:
   - **Generative AI Provider**: Integrates seamlessly with Google Gemini (or OpenAI / Groq) via backend prompt engineering.
   - **Zero-Downtime Knowledge Engine Fallback**: If an AI API key is not supplied or if rate limits occur, the system automatically uses an algorithmic Indian travel knowledge engine.
-- **Dynamic Daily Schedules**:
+- **Dynamic Daily Schedules & Interactive Route Mapping**:
   - Structured into **Morning**, **Afternoon**, and **Evening** time slots.
+  - **Interactive Leaflet Route Map**: Visualizes the geographic stop sequence with high-contrast numbered pins, stop details, and dashed route paths across individual day tabs.
+  - **Trip Expense Ledger**: Record and compare real-world spending against planned and estimated budgets in INR (`₹`).
+  - **Seasonal Weather & Packing Guidance**: Tailored climate outlooks and essentials (e.g. temple attire, slip-on shoes, mountain fleece) for Indian destinations.
   - Interactive: Add custom activities, edit timings, modify costs, or remove activities on the fly.
   - Category-wise expense breakdown: Accommodation, Food & Dining, Sightseeing, Local Transport, and Contingency.
-- **Data Persistence (Supabase & Local)**:
+- **Data Persistence & Supabase Auth**:
+  - Full Supabase Auth Modal (Email/Password) with profile indicator in navigation bar.
   - Supabase PostgreSQL schema with Row-Level Security (RLS) included in `supabase/schema.sql`.
   - Offline local fallback (`backend/data/saved_trips.json` & browser storage) ensures the app functions completely out of the box without requiring external database accounts.
 - **Production-Ready & Responsive UI/UX**:
